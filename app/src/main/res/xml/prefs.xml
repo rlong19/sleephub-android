@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Zeo Mobile">
+        <ListPreference android:key="zeo_poll_sec" android:title="Poll interval"
+            android:summary="Send QUERY_STATE + SLEEP_SEND this often while connected (0 = only on headband events)"
+            android:entries="@array/poll_names" android:entryValues="@array/poll_values" android:defaultValue="60" />
+        <CheckBoxPreference android:key="zeo_time_sync" android:title="Auto time sync"
+            android:summary="Like the official app: set the headband clock after reboot/undock, only while the sleep algorithm is idle."
+            android:defaultValue="true" />
+        <Preference android:key="forget_zeo" android:title="Forget headband" android:summary="Stop and clear the saved Zeo MAC." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="EMAY SleepO2 oximeter">
+        <CheckBoxPreference android:key="oxi_set_clock" android:title="Set oximeter clock during history sync"
+            android:summary="Sends 83 (set clock) to the phone time. Off by default. Never sent unless the device reports it is idle (not recording)."
+            android:defaultValue="false" />
+        <Preference android:key="forget_oxi" android:title="Forget oximeter" android:summary="Disconnect and clear the saved oximeter MAC (stored separately from Zeo/ring)." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Ring connection">
+        <CheckBoxPreference android:key="stay_connected_bg" android:title="Stay connected in background"
+            android:summary="SleepHub's single foreground service keeps the ring GATT link alive in the background (it also runs whenever the Zeo link is enabled)."
+            android:defaultValue="false" />
+        <Preference android:key="forget_ring" android:title="Forget ring"
+            android:summary="Clear saved MAC and stop auto-reconnect." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="App auto SpO2">
+        <ListPreference android:key="app_spo2_interval" android:title="App-triggered SpO2 interval"
+            android:entries="@array/app_spo2_labels" android:entryValues="@array/app_spo2_values" android:defaultValue="15"
+            android:summary="The app starts an SpO2 measurement itself. Continuous = restart immediately after each result (~1 value/min, LED almost always on: drains the ring battery fast). Runs only while still/asleep unless set to all day." />
+        <ListPreference android:key="app_spo2_when" android:title="When to measure"
+            android:entries="@array/spo2_when_labels" android:entryValues="@array/spo2_when_values" android:defaultValue="sleep"
+            android:summary="%s" />
+        <CheckBoxPreference android:key="sleeping_now" android:title="Sleeping now"
+            android:summary="One-tap: measure SpO2 until turned off (also in the notification). Auto-detection uses the ring's sleep state/hypnogram, else stillness + HR." android:defaultValue="false" />
+        <EditTextPreference android:key="spo2_win_start" android:title="Fixed window start (HH:mm)" android:defaultValue="22:00" android:summary="Used only when 'When' = fixed window" />
+        <EditTextPreference android:key="spo2_win_end" android:title="Fixed window end (HH:mm)" android:defaultValue="07:00" android:summary="Used only when 'When' = fixed window" />
+        <Preference android:key="app_spo2_status" android:title="Auto SpO2 status" android:selectable="false" />
+        <Preference android:key="app_spo2_battery" android:title="Allow running in background"
+            android:summary="Exempt the app from battery optimisation so alarms fire on time in Doze." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Ring auto-measure">
+        <Preference android:key="auto_measure" android:title="Ring auto-measure intervals"
+            android:summary="Read and set how often the ring measures HR, SpO2, HRV and stress on its own (writes a ring setting)." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Ring diagnostics">
+        <Preference android:key="command_probe" android:title="Command probe"
+            android:summary="Send SAFE CRP queries/toggles. Includes 1-min sleep actigraphy (2/19), hypnogram (2/14), 30-min steps. DANGEROUS commands hidden." />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="DEMO (simulated data)">
+        <CheckBoxPreference android:key="zeo_demo" android:title="Zeo DEMO source"
+            android:summary="OFF by default. Shows a 'Start DEMO headband' button that generates simulated HMSG frames. Everything it produces is labelled DEMO."
+            android:defaultValue="false" />
+        <CheckBoxPreference android:key="demo_mode" android:title="Ring DEMO source"
+            android:summary="OFF by default. Simulated MoYoung ring (from DaRings recreated)." android:defaultValue="false" />
+        <Preference android:key="clear_demo" android:title="Clear ring demo data" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,49 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local SDK path (machine-specific)
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+.navigation/
+captures/
+output.json
+
+# Native / CMake
+.externalNativeBuild/
+.cxx/
+
+# Build outputs
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+bin/
+gen/
+out/
+
+# Signing keys — never commit
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Logs, dumps, and local databases
+*.log
+*.hprof
+*.db
+*.db-journal
+
+# Kotlin
+.kotlin/
+
+# OS
+.DS_Store
+Thumbs.db
